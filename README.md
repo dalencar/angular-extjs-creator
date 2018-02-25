@@ -1,27 +1,39 @@
-# AngularExtjsModern
+# NgxExtJS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+## Steps to create a new version ExtJS bridge:   
 
-## Development server
+1 - Install [jsduck 5+](https://github.com/senchalabs/jsduck)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+2 - Do download [ExtJS 6+](https://www.sencha.com/products/evaluate/) and gets the following files:
 
-## Code scaffolding
+    ext-6.x.x.zip 
+    ext-addons-6.x.x.zip
+    
+    > NOTE: The file ext-addons-6.x.x.zip will there is a only folder, named `packages`. Should be merged in the existing folder in next step.  
+    
+3 - Extract the previous content files in the existent project directory `./extjs`. Example how `./extjs` directory will be:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+     ./extjs/build
+     ./extjs/classic
+     ./extjs/cmd
+     ./extjs/examples
+     ./extjs/packages
+     ...
+     ...
+     ...
+    
+4 - Run the following command to make sure folder `./flatten` is empty:
 
-## Build
+    $ npm run step1 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+5 - Run the following command to create json files from source ExtJS comments:
 
-## Running unit tests
+    $ npm run step2
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+6 - Run the following command to build and create all angular components files:
 
-## Running end-to-end tests
+    $ npm run step2
+        
+## Thanks
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Project inspirated from [mgusmano/angular2-extjs](https://github.com/mgusmano/angular2-extjs)

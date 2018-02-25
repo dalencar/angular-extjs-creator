@@ -2,12 +2,11 @@ const fs = require('fs');
 const es6template = require('es6-template');
 const ngCli = require('./.angular-cli.json');
 
-const jsonDir = './extjs_json';
+const flattenDir = './flatten';
 const tmpDir = './templates';
 const ngSrc = './src';
 const ngDir = ngSrc + '/app';
 const ngApp = 'app';
-const extDir = './extjs_misc';
 
 /**
  * Build all angular components based on ExtJS
@@ -107,9 +106,6 @@ const extDir = './extjs_misc';
     // Build class to centrilize object's ExtJS
     buildExtClass(prefix);
 
-    // Build app.js for build extjs project
-    buildExtJsApp(allClasses);
-
     // Build module
     buildModule(imports, exports, declarations, prefix);
 
@@ -123,10 +119,10 @@ const extDir = './extjs_misc';
  */
 function getMetadata() {
     const data = [];
-    fs.readdirSync(jsonDir + '/').forEach(function(file) {
+    fs.readdirSync(flattenDir + '/').forEach(function(file) {
         if (file.match(/\.json$/) !== null) {
             var name = file.replace(/\.json$/, '');
-            data.push(require(jsonDir + '/' + file));
+            data.push(require(flattenDir + '/' + file));
         }
     });
     return data;
@@ -252,19 +248,6 @@ function buildIndex(prefix) {
     });
 }
 
-/**
- *
- * @param allClasses
- */
-function buildExtJsApp(allClasses) {
-    loadFile('app.tpl', function (contentFile) {
-        contentFile = es6template(contentFile, {
-            allClasses: JSON.stringify(allClasses, null, 0).replace(/"/g, '\'').replace(/\[/, '').replace(/\]/, '')
-        });
-        makeExtFile('app', contentFile);
-    });
-}
-
 function dashToCapitalize(value) {
     return value
         .split('-')
@@ -320,15 +303,6 @@ function loadFile(fileName, callback) {
  */
 function makeNgFile(fileName, contentFile) {
     makeFile(ngDir + '/' + fileName + '.ts', contentFile);
-}
-
-/**
- *
- * @param fileName
- * @param contentFile
- */
-function makeExtFile(fileName, contentFile) {
-    makeFile(extDir + '/' + fileName + '.js', contentFile);
 }
 
 /**
