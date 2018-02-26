@@ -13,7 +13,7 @@
     "step2": "jsduck --export=full --output ./extjs_json ./extjs_src/modern/modern/src ./extjs_src/modern/modern/overrides ./extjs_src/packages/core/src ./extjs_src/packages/core/overrides/app ./extjs_src/packages/calendar/src/calendar ./extjs_src/packages/d3/src/d3 ./extjs_src/packages/d3/modern/src/d3 ./extjs_src/packages/charts/src/chart ./extjs_src/packages/charts/src/draw ./extjs_src/packages/charts/modern/src ./extjs_src/packages/pivot/src/pivot ./extjs_src/packages/pivot/modern/src/pivot ./extjs_src/packages/amf/src ./extjs_src/packages/soap/src ./extjs_src/packages/ux/src ./extjs_src/modern/theme-base/sass ./extjs_src/modern/theme-cupertino/sass ./extjs_src/modern/theme-mountainview/sass ./extjs_src/modern/theme-neptune/sass ./extjs_src/modern/theme-windows/sass ./extjs_src/packages/core/sass",
     "step3": "node build.js"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
