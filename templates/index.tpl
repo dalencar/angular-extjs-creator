@@ -1,2 +1,2 @@
-export * from './${dist}/${prefix}.module'
-export * from './${dist}/${prefix}.class'
+export * from '${dist}/${prefix}.module'
+export * from '${dist}/${prefix}.class'

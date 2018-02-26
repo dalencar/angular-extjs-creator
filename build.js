@@ -6,7 +6,6 @@ const flattenDir = './flatten';
 const tmpDir = './templates';
 const ngSrc = './src';
 const ngDir = ngSrc + '/app';
-const ngApp = 'app';
 
 /**
  * Build all angular components based on ExtJS
@@ -241,10 +240,10 @@ function buildModule(imports, exports, declarations, prefix) {
 function buildIndex(prefix) {
     loadFile('index.tpl', function (contentFile) {
         contentFile = es6template(contentFile, {
-            dist: ngApp,
+            dist: ngDir,
             prefix: prefix
         });
-        makeFile(ngSrc + '/index.ts', contentFile);
+        makeFile('./index.ts', contentFile);
     });
 }
 
