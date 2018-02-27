@@ -3,9 +3,9 @@ const es6template = require('es6-template');
 const ngCli = require('./.angular-cli.json');
 
 const flattenDir = './flatten';
-const tmpDir = './templates';
-const ngSrc = './src';
-const ngDir = ngSrc + '/app';
+const tplDir = './templates';
+const ngDirSrc = '.';
+const ngDirLib = ngDirSrc + '/lib';
 
 /**
  * Build all angular components based on ExtJS
@@ -108,8 +108,8 @@ const ngDir = ngSrc + '/app';
     // Build module
     buildModule(imports, exports, declarations, prefix);
 
-    // Build index
-    buildIndex(prefix);
+    // Build Public API
+    buildPublicApi(prefix);
 
 })(ngCli.apps[0].prefix);
 
@@ -143,7 +143,7 @@ function buildComponent(className, fileName, inputs, outputs, extClassName, xtyp
     loadFile('component.tpl', function (contentFile) {
         contentFile = es6template(contentFile, {
             classNameBase: classNameBase,
-            fileNameBase: fileNameBase,
+            fileNameBase: './' + fileNameBase,
             extClassName: extClassName,
             xtypes: JSON.stringify(xtypes, null, 4).replace(/"/g, '\'').replace(/\n/g, '\n    '),
             inputs: JSON.stringify(inputs, null, 4).replace(/"/g, '\'').replace(/\n/g, '\n    '),
@@ -152,7 +152,7 @@ function buildComponent(className, fileName, inputs, outputs, extClassName, xtyp
             className: className,
             selector: xtypes.map(function(xtype){return buildSelector(prefix, xtype);}).toString()
         });
-        makeNgFile(fileName, contentFile);
+        makeFile( ngDirLib + '/' + fileName + '.ts', contentFile);
     });
 }
 
@@ -166,7 +166,7 @@ function buildBaseComponent(classNameBase, fileNameBase) {
         contentFile = es6template(contentFile, {
             classNameBase: classNameBase
         });
-        makeNgFile(fileNameBase, contentFile);
+        makeFile(ngDirLib + '/' + fileNameBase + '.ts', contentFile);
     });
 }
 
@@ -193,13 +193,13 @@ function buildExtComponent(classNameBase, fileNameBase, prefix) {
  * @param prefix
  */
 function buildExtClass(prefix) {
-    const className = buildClassName(prefix, 'class')
-    const fileName = buildFileName(prefix)
+    const className = buildClassName(prefix, 'class');
+    const fileName = buildFileName(prefix);
     loadFile('ext-class.tpl', function (contentFile) {
         contentFile = es6template(contentFile, {
             className: className
         });
-        makeNgFile(fileName + '.class', contentFile);
+        makeFile(ngDirLib + '/' + fileName + '.class.ts', contentFile);
     });
 }
 
@@ -229,7 +229,7 @@ function buildModule(imports, exports, declarations, prefix) {
             declarations: JSON.stringify(declarations, null, 4).replace(/"/g, '').replace(/\n/g, '\n    '),
             className: className
         });
-        makeNgFile(prefix + '.module', contentFile);
+        makeFile( ngDirLib + '/' + prefix + '.module.ts', contentFile);
     });
 }
 
@@ -237,13 +237,12 @@ function buildModule(imports, exports, declarations, prefix) {
  *
  * @param prefix
  */
-function buildIndex(prefix) {
-    loadFile('index.tpl', function (contentFile) {
+function buildPublicApi(prefix) {
+    loadFile('public_api.tpl', function (contentFile) {
         contentFile = es6template(contentFile, {
-            dist: ngDir,
             prefix: prefix
         });
-        makeFile('./index.ts', contentFile);
+        makeFile( ngDirSrc + '/public_api.ts', contentFile);
     });
 }
 
@@ -289,19 +288,10 @@ function buildSelector(prefix, xtype) {
  * @param callback
  */
 function loadFile(fileName, callback) {
-    fs.readFile(tmpDir + '/' + fileName, {encoding: "utf8"}, function (err, contentFile) {
+    fs.readFile(tplDir + '/' + fileName, {encoding: "utf8"}, function (err, contentFile) {
         if (err) throw err;
         callback(contentFile);
     });
-}
-
-/**
- *
- * @param fileName
- * @param contentFile
- */
-function makeNgFile(fileName, contentFile) {
-    makeFile(ngDir + '/' + fileName + '.ts', contentFile);
 }
 
 /**

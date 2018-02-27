@@ -2,7 +2,7 @@ import {
     Component, ViewChild, ElementRef, ComponentFactoryResolver, ViewContainerRef, forwardRef, ContentChildren,
     QueryList, AfterContentInit, OnInit
 } from '@angular/core';
-import {${classNameBase}} from './${fileNameBase}';
+import {${classNameBase}} from '${fileNameBase}';
 
 /**
  * @see ${extClassName}

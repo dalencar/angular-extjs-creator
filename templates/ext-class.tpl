@@ -5,9 +5,9 @@ export class ${className} {
     public extend: any;
     public defineConfig: any;
     public createConfig: any;
-    public extjsObject;
-    public ext;
-    public x;
+    public extjsObject: any;
+    public ext: any;
+    public x: any;
 
     constructor (className: any, extend: string, defineConfig: any, createConfig: any) {
         if (!Ext.ClassManager.isCreated(className)) {

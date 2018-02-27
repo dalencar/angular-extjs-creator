@@ -8,6 +8,7 @@ export class ${classNameBase} {
     private listeners = {};
     private xtype: string;
     private inputs: any;
+    [key: string]: any;
 
     constructor(
         private myElement: any,
@@ -23,7 +24,7 @@ export class ${classNameBase} {
         });
     }
 
-    AfterContentInit(ExtJSBaseRef) {
+    AfterContentInit(ExtJSBaseRef: QueryList<XngBaseComponent>) {
         const extJSRootComponentRef: ${classNameBase} = ExtJSBaseRef.first;
         const firstExtJS = extJSRootComponentRef.extjsObject;
         firstExtJS.setRenderTo(this.myElement.nativeElement);
@@ -39,7 +40,7 @@ export class ${classNameBase} {
         }
     }
 
-    OnInit(dynamicTarget) {
+    OnInit(dynamicTarget: ViewContainerRef) {
         const me: any = this;
         const o: any = {};
         let eventtasks: any[] = [];
