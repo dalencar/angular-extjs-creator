@@ -1,4 +1,4 @@
-import {ComponentFactory, ComponentFactoryResolver, EventEmitter, Type} from '@angular/core';
+import {ComponentFactory, ComponentFactoryResolver, EventEmitter, Type, QueryList, ViewContainerRef} from '@angular/core';
 
 declare var Ext: any;
 

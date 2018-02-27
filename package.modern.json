@@ -1,0 +1,13 @@
+{
+  "name": "@dalencar/angular-extjs-modern",
+  "version": "1.0.3",
+  "license": "MIT",
+  "author": "Davidson Alencar <davidson.t.i@gmail.com",
+  "description": "ExtJS Modern Toolkit 6.5.1 bridge Angular 2+",
+  "keywords": ["ExtJS", "ExtJS 6.5.1", "Angular", "Angular 2", "Angular 5"],
+  "private": false,
+  "dependencies": {
+    "@angular/core": "^5.2.0",
+    "rxjs": "^5.5.6"
+  }
+}
