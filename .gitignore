@@ -6,6 +6,7 @@
 /tmp
 /out-tsc
 public_api.ts
+/.ng_pkg_build
 
 # dependencies
 /node_modules

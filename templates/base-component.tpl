@@ -15,7 +15,7 @@ export class ${classNameBase} {
         private componentFactoryResolver: ComponentFactoryResolver,
         private metaData: any
     ) {
-        this.xtype = metaData.XTYPE;
+        this.xtype = metaData.XTYPES[0];
         this.inputs = metaData.INPUTNAMES;
         this.rootElement = myElement.nativeElement;
         this['ready'] = new EventEmitter();

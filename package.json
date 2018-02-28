@@ -1,6 +1,6 @@
 {
-  "name": "@dalencar/angular-extjs-creator",
-  "version": "1.0.3",
+  "name": "@dalencar/angular-extjs-modern",
+  "version": "1.0.4",
   "license": "MIT",
   "author": "Davidson Alencar <davidson.t.i@gmail.com",
   "description": "ExtJS Modern Toolkit bridge Angular 2+",
