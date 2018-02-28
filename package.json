@@ -4,7 +4,13 @@
   "license": "MIT",
   "author": "Davidson Alencar <davidson.t.i@gmail.com",
   "description": "ExtJS Modern Toolkit bridge Angular 2+",
-  "keywords": ["ExtJS", "ExtJS 6.5.1", "Angular", "Angular 2", "Angular 5"],
+  "keywords": [
+    "ExtJS",
+    "ExtJS 6.5.1",
+    "Angular",
+    "Angular 2",
+    "Angular 5"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
