@@ -1,0 +1,17 @@
+Ext.require([
+'plugin.responsive',
+'widget.widgetcell',
+'widget.sparklineline',
+'plugin.grideditable',
+'plugin.gridviewoptions',
+'plugin.pagingtoolbar',
+'plugin.summaryrow',
+'plugin.columnresizing',
+'plugin.pivotconfigurator',
+'axis.numeric',
+'axis.category',
+'Ext.chart.series.Series',
+'series.bar',
+'series.pie',
+${allClasses}
+]);

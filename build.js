@@ -111,6 +111,9 @@ const ngDirLib = ngDirSrc + '/lib';
     // Build Public API
     buildPublicApi(prefix);
 
+    // Build app.js to use optionaly in yout extjs project building
+    buildExtJsApp(allClasses);
+
 })(ngCli.apps[0].prefix);
 
 /**
@@ -243,6 +246,19 @@ function buildPublicApi(prefix) {
             prefix: prefix
         });
         makeFile( ngDirSrc + '/public_api.ts', contentFile);
+    });
+}
+
+/**
+ *
+ * @param allClasses
+ */
+function buildExtJsApp(allClasses) {
+    loadFile('app.tpl', function (contentFile) {
+        contentFile = es6template(contentFile, {
+            allClasses: JSON.stringify(allClasses, null, 0).replace(/"/g, '\'').replace(/\[/, '').replace(/\]/, '').replace(/,/g, ',\n')
+        });
+        makeFile( ngDirSrc + '/misc/app.js', contentFile);
     });
 }
 
